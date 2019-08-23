@@ -1,0 +1,8 @@
+.idea/
+node_modules/
+dist/
+
+*.tgz
+*.log
+
+CHANGELOG.md

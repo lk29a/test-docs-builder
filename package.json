@@ -2,9 +2,14 @@
   "name": "cplace-jsdocs",
   "version": "0.1.0",
   "description": "Build tool for cplaceJS docs",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "dev:tsc": "tsc",
+      "clean": "rimraf dist/ *.tgz"
+  },
+    "main": "dist/index.js",
+    "bin": {
+        "cplacejs-docs": "dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +26,23 @@
   "bugs": {
     "url": "https://github.com/collaborationFactory/cplace-jsdocs/issues"
   },
-  "homepage": "https://github.com/collaborationFactory/cplace-jsdocs#readme"
+    "homepage": "https://github.com/collaborationFactory/cplace-jsdocs#readme",
+    "devDependencies": {
+        "@types/fs-extra": "^8.0.0",
+        "@types/meow": "^5.0.0",
+        "@types/minimist": "^1.2.0",
+        "@types/node": "^10.12.10",
+        "@types/rimraf": "^2.0.2",
+        "jsdoc": "^3.6.3",
+        "typescript": "^3.5.3"
+    },
+    "dependencies": {
+        "fs-extra": "^8.1.0",
+        "get-installed-path": "^4.0.8",
+        "jsdoc-api": "^5.0.2",
+        "meow": "^5.0.0",
+        "minimist": "^1.2.0",
+        "rimraf": "^3.0.0",
+        "better-docs": "github:collaborationFactory/better-docs#template-for-cplacejs-docs"
+    }
 }
