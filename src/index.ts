@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import * as meow from 'meow'
+import meow from 'meow'
 import {CplaceJSDocs, ICplaceJSDocsConfig} from './model/CplaceJSDocs';
 import {cerr, debug, enableDebug} from './utils';
 

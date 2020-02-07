@@ -5,18 +5,22 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as rimraf from 'rimraf';
 import {copySync, ensureDirSync} from 'fs-extra';
+import jsdoc2md from 'jsdoc-to-markdown';
 import baseJsdocConf from '../utils/baseJsdocConf';
-
-const {getInstalledPathSync} = require('get-installed-path');
-const jsdoc = require('jsdoc-api');
+import classTemplate from '../dmd-cplacejs/templates/tmpl-class';
+import namespaceTemplate from '../dmd-cplacejs/templates/tmpl-namespace';
+import typedefTemplate from '../dmd-cplacejs/templates/tmpl-typedef';
+import {groupData} from './BuilderUtils';
+import '../dmd-cplacejs/helper/helpers'
+// const {getInstalledPathSync} = require('get-installed-path');
+// const jsdoc = require('jsdoc-api');
 
 interface JsdocPaths {
-    source: Array<string>;
+    sourceDir: string;
     config: string;
-    template: string;
-    plugin: string;
+    jsdocPlugin: string;
+    cplacePlugin: string;
     out: string;
-    examples: string;
 }
 
 export default class DocsBuilder {
@@ -25,7 +29,14 @@ export default class DocsBuilder {
 
     constructor(private readonly plugins: Map<string, string>, private readonly destination: string, private readonly outputHtml) {
         this.workingDir = DocsBuilder.createTemporaryWorkingDir();
-        plugins.keys()
+
+        for (let key of plugins.keys()) {
+            if (key === 'cf.cplace.platform') {
+                plugins.set(key, path.resolve(path.join('docs', key)));
+            } else {
+                plugins.delete(key);
+            }
+        }
     }
 
     static createTemporaryWorkingDir(): string {
@@ -41,10 +52,6 @@ export default class DocsBuilder {
         console.log('Collecting docs from plugins...');
         this.copyDocsFromPlugins();
         const jsdocConfPath = path.join(this.workingDir, 'jsdoc.json');
-        const docsSource = this.getAllDocsPaths();
-        const templatePath = getInstalledPathSync('better-docs', {
-            local: true
-        });
 
         let destinationPath = path.join(this.workingDir, 'out');
         if (this.destination) {
@@ -52,29 +59,64 @@ export default class DocsBuilder {
         }
         ensureDirSync(destinationPath);
 
-        const pathsForJsdoc: JsdocPaths = {
-            source: docsSource,
-            config: jsdocConfPath,
-            template: templatePath,
-            plugin: require.resolve('../lib/cplaceJSDocs'),
-            out: destinationPath,
-            examples: path.join(this.workingDir, 'allDocs')
-        };
+        const docsSource = this.getAllDocsPaths();
 
-        DocsBuilder.generateConfiguration(pathsForJsdoc);
-        const output = jsdoc.renderSync({
-            configure: jsdocConfPath,
-            files: docsSource
+        Object.keys(docsSource).forEach((plugin) => {
+            console.log(docsSource[plugin]);
+
+            const pathsForJsdoc: JsdocPaths = {
+                cplacePlugin: plugin,
+                sourceDir: docsSource[plugin],
+                config: jsdocConfPath,
+                jsdocPlugin: require.resolve('../lib/cplaceJsdocPlugin'),
+                out: destinationPath,
+            };
+            DocsBuilder.generateConfiguration(pathsForJsdoc);
+            this.buildForPlugin(plugin, pathsForJsdoc);
+        });
+        console.log('Docs generated in folder: ' + destinationPath);
+    }
+
+    buildForPlugin(plugin: string, jsdocPaths: JsdocPaths) {
+        let docsData = jsdoc2md.getTemplateDataSync({
+            'no-cache': true,
+            files: jsdocPaths.sourceDir + '/**/*.js',
+            configure: jsdocPaths.config,
+
         });
 
-        debug(output);
-        console.log('Docs generated in folder: ' + destinationPath);
+        const groups = groupData(docsData);
+
+        Object.keys(groups).forEach((group) => {
+            const templateClosure = DocsBuilder.getTemplateClosure(group);
+
+            for (const entry of groups[group]) {
+                const template = templateClosure(entry);
+                // console.log(`rendering ${entry}, template: ${template}`);
+                const output = jsdoc2md.renderSync({data: docsData, template: template});
+                fs.writeFileSync(path.resolve(jsdocPaths.out, `${entry}.md`), output);
+            }
+        });
+
+        // do it for global typedefs
+        const templateClosure = DocsBuilder.getTemplateClosure('typedef');
+        const template = templateClosure('Helper types');
+        // console.log(`rendering Helper types, template: ${template}`);
+        const output = jsdoc2md.renderSync({
+            data: docsData,
+            helper: require.resolve('../dmd-cplacejs/helper/helpers'),
+            template: template
+        });
+        fs.writeFileSync(path.resolve(jsdocPaths.out, 'helper-types.md'), output);
+        // copy example files.
+        // link between docs
     }
 
     private copyDocsFromPlugins() {
         this.plugins.forEach((pluginPath, pluginName) => {
             copySync(
-                path.join(pluginPath, 'assets', 'cplaceJS'),
+                // path.join(pluginPath, 'assets', 'cplaceJS'),
+                pluginPath,
                 path.join(this.workingDir, 'allDocs', pluginName)
             );
         });
@@ -84,17 +126,9 @@ export default class DocsBuilder {
         debug('Generating jsdoc configuration...');
         const jsDocConf = Object.assign({}, baseJsdocConf);
         // set path of all docs folders
-        jsDocConf.source.include = jsdocPaths.source;
-        // add out jsdoc plugin path
-        jsDocConf.plugins.push(jsdocPaths.plugin);
-        // set template path
-        jsDocConf.opts.template = jsdocPaths.template;
-        // set output path
-        jsDocConf.opts.destination = jsdocPaths.out;
-        // set tutorials path
-        jsDocConf.opts.tutorials = jsdocPaths.examples;
-        // setup template specific paths
-        // jsDocConf.templates.default.staticFiles.include = [path.join(jsdocPaths.template)]
+        jsDocConf.opts.docsDir = jsdocPaths.sourceDir;
+        // add our jsdoc plugin path
+        // jsDocConf.plugins.push(jsdocPaths.jsdocPlugin);
 
         const content = JSON.stringify(jsDocConf, null, 4);
         debug('Writing jsdoc configuration... \n' + content);
@@ -105,13 +139,28 @@ export default class DocsBuilder {
         );
     }
 
-    private getAllDocsPaths(): Array<string> {
-        const docsPaths: Array<string> = [];
+    private getAllDocsPaths(): Object {
+        const docsPaths = {};
         for (const pluginName of this.plugins.keys()) {
-            const docPath = path.join(this.workingDir, 'allDocs', pluginName, 'docs');
-            docsPaths.push(docPath);
+            docsPaths[pluginName] = path.join(this.workingDir, 'allDocs', pluginName, 'docs');
         }
         return docsPaths;
+    }
+
+
+    private static getTemplateClosure(type) {
+        switch (type) {
+            case 'className':
+                return classTemplate;
+            case 'namespace':
+                return namespaceTemplate;
+            case 'typedef':
+                return typedefTemplate;
+            default:
+                return () => {
+                    return '{{>docs}}';
+                };
+        }
     }
 }
 

@@ -43,7 +43,7 @@ export class CplaceJSDocs {
 
     public async build(): Promise<void> {
         if (!this.plugins.size) {
-            console.log('Now Promise<void plugins with cplaceJS docs found');
+            console.log('No plugins with cplaceJS docs found');
             return new Promise<void>(resolve => resolve());
         }
 
@@ -58,6 +58,7 @@ export class CplaceJSDocs {
         const startTime = new Date().getTime();
 
         const docsBuilder = new DocsBuilder(this.plugins, this.buildConfig.destination, this.buildConfig.html);
+        console.log(`(CplaceJSDocs) Found plugins with jsdoc: ${Array.from(this.plugins.keys())}`);
         docsBuilder.start()
             .then(() => {
                 const endTime = new Date().getTime();

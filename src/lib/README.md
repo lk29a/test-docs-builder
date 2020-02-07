@@ -32,9 +32,6 @@ Every plugin must provide <code>manifest.json</code>. This file contains meta da
     "displayName": "Title for this plugin doc section",
     "examplesTitle": "Title for examples section of this plugin",
     "apiTitle": "Title for api docs section of this plugin",
-    "examples": { 
-        // same structure as examples.json  
-    }
 }
 ```
 
