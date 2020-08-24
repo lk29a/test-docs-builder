@@ -4,16 +4,19 @@ import {debug} from '../utils';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as rimraf from 'rimraf';
-import {copySync, ensureDirSync} from 'fs-extra';
+import {copySync, ensureDirSync, outputFileSync} from 'fs-extra';
 import jsdoc2md from 'jsdoc-to-markdown';
 import baseJsdocConf from '../utils/baseJsdocConf';
 import classTemplate from '../dmd-cplacejs/templates/tmpl-class';
 import namespaceTemplate from '../dmd-cplacejs/templates/tmpl-namespace';
 import typedefTemplate from '../dmd-cplacejs/templates/tmpl-typedef';
-import {groupData} from './BuilderUtils';
+import {generateLinks, groupData} from './BuilderUtils';
 import '../dmd-cplacejs/helper/helpers'
-// const {getInstalledPathSync} = require('get-installed-path');
-// const jsdoc = require('jsdoc-api');
+import {PluginMetaData} from './constants';
+import frontMatterTemplate from "../dmd-cplacejs/templates/tmpl-fromtMatter";
+
+
+// TODO: finalize docs by copying file to correct folder structure for hugodocs
 
 interface JsdocPaths {
     sourceDir: string;
@@ -30,13 +33,14 @@ export default class DocsBuilder {
     constructor(private readonly plugins: Map<string, string>, private readonly destination: string, private readonly outputHtml) {
         this.workingDir = DocsBuilder.createTemporaryWorkingDir();
 
-        for (let key of plugins.keys()) {
-            if (key === 'cf.cplace.platform') {
-                plugins.set(key, path.resolve(path.join('docs', key)));
-            } else {
-                plugins.delete(key);
-            }
-        }
+        // // // TODO: remove this
+        // for (let key of plugins.keys()) {
+        //     if (key === 'cf.cplace.platform') {
+        //         plugins.set(key, path.resolve(path.join('docs', key)));
+        //     } else {
+        //         plugins.delete(key);
+        //     }
+        // }
     }
 
     static createTemporaryWorkingDir(): string {
@@ -62,8 +66,6 @@ export default class DocsBuilder {
         const docsSource = this.getAllDocsPaths();
 
         Object.keys(docsSource).forEach((plugin) => {
-            console.log(docsSource[plugin]);
-
             const pathsForJsdoc: JsdocPaths = {
                 cplacePlugin: plugin,
                 sourceDir: docsSource[plugin],
@@ -78,45 +80,115 @@ export default class DocsBuilder {
     }
 
     buildForPlugin(plugin: string, jsdocPaths: JsdocPaths) {
+
+        let metaData: PluginMetaData = DocsBuilder.getMetaData(jsdocPaths.sourceDir, plugin);
+
+        if (metaData.pluginShortName) {
+            metaData.pluginShortName = metaData.pluginShortName.replace(/\s+/g, '-').toLowerCase();
+        } else {
+            console.error(`(CplaceJSDocs) Incorrect meta data cannot build docs for ${plugin}`);
+            return;
+        }
+
+        const outputPaths = DocsBuilder.createDirectoryStructure(jsdocPaths.out, plugin, metaData);
+
         let docsData = jsdoc2md.getTemplateDataSync({
             'no-cache': true,
-            files: jsdocPaths.sourceDir + '/**/*.js',
+            files: path.join(jsdocPaths.sourceDir, 'docs', '/**/*.js'),
             configure: jsdocPaths.config,
-
         });
 
+        // group different types of entities
         const groups = groupData(docsData);
+        generateLinks(metaData.pluginShortName, groups);
 
         Object.keys(groups).forEach((group) => {
+            if (group === 'typedef') {
+                return;
+            }
             const templateClosure = DocsBuilder.getTemplateClosure(group);
 
             for (const entry of groups[group]) {
+
                 const template = templateClosure(entry);
-                // console.log(`rendering ${entry}, template: ${template}`);
-                const output = jsdoc2md.renderSync({data: docsData, template: template});
-                fs.writeFileSync(path.resolve(jsdocPaths.out, `${entry}.md`), output);
+                debug(`rendering ${entry}, template: ${template}`);
+                const output = jsdoc2md.renderSync({
+                    data: docsData,
+                    template: template,
+                    helper: require.resolve('../dmd-cplacejs/helper/helpers'),
+                });
+                fs.writeFileSync(path.resolve(outputPaths.docs, `${entry}.md`), output);
             }
         });
 
         // do it for global typedefs
         const templateClosure = DocsBuilder.getTemplateClosure('typedef');
         const template = templateClosure('Helper types');
-        // console.log(`rendering Helper types, template: ${template}`);
         const output = jsdoc2md.renderSync({
             data: docsData,
             helper: require.resolve('../dmd-cplacejs/helper/helpers'),
-            template: template
+            template: template,
+            partials: require.resolve('../dmd-cplacejs/partials/typedef/docs'),
         });
-        fs.writeFileSync(path.resolve(jsdocPaths.out, 'helper-types.md'), output);
+        fs.writeFileSync(path.resolve(outputPaths.docs, 'helper-types.md'), output);
+
+        copySync(path.resolve(jsdocPaths.sourceDir, 'examples'), outputPaths.examples);
         // copy example files.
         // link between docs
+    }
+
+    /**
+     * Directory structure will be as follows eg.
+     *  - cf.cplace.platform
+     *      - _index.md
+     *      - docs
+     *          - _index.md
+     *      - examples
+     *          - _index.md
+     *  - cf.cplace.officeReports
+     *    ...
+     *
+     * If a directory already exists i.e. plugin name is duplicate a numeric suffix will be added
+     */
+    private static createDirectoryStructure(outputPath: string, pluginName: string, metaData: PluginMetaData) {
+        const pluginOut = path.join(outputPath, pluginName);
+
+        const pluginFm = frontMatterTemplate(metaData.displayName);
+        outputFileSync(path.join(pluginOut, '_index.md'), pluginFm);
+
+        const docsOut = path.join(pluginOut, 'docs');
+        const docsFm = frontMatterTemplate(metaData.apiTitle);
+        outputFileSync(path.join(docsOut, '_index.md'), docsFm);
+
+        const examplesOut = path.join(pluginOut, 'examples');
+        const examplesFm = frontMatterTemplate(metaData.examplesTitle);
+        outputFileSync(path.join(examplesOut, '_index.md'), examplesFm);
+
+        return {
+            docs: docsOut,
+            examples: examplesOut
+        }
+    }
+
+    private static getMetaData(dir: string, plugin: string): PluginMetaData {
+        const file = path.resolve(dir, 'manifest.json');
+        if (fs.existsSync(file)) {
+            return JSON.parse(fs.readFileSync(file, 'utf-8'));
+        } else {
+            const shortName = plugin.split('.').pop()
+            return {
+                pluginShortName: shortName,
+                displayName: shortName,
+                examplesTitle: 'Examples',
+                apiTitle: 'API'
+            }
+        }
     }
 
     private copyDocsFromPlugins() {
         this.plugins.forEach((pluginPath, pluginName) => {
             copySync(
-                // path.join(pluginPath, 'assets', 'cplaceJS'),
-                pluginPath,
+                path.join(pluginPath, 'assets', 'cplaceJS'),
                 path.join(this.workingDir, 'allDocs', pluginName)
             );
         });
@@ -142,7 +214,7 @@ export default class DocsBuilder {
     private getAllDocsPaths(): Object {
         const docsPaths = {};
         for (const pluginName of this.plugins.keys()) {
-            docsPaths[pluginName] = path.join(this.workingDir, 'allDocs', pluginName, 'docs');
+            docsPaths[pluginName] = path.join(this.workingDir, 'allDocs', pluginName);
         }
         return docsPaths;
     }
@@ -150,7 +222,7 @@ export default class DocsBuilder {
 
     private static getTemplateClosure(type) {
         switch (type) {
-            case 'className':
+            case 'clazz':
                 return classTemplate;
             case 'namespace':
                 return namespaceTemplate;

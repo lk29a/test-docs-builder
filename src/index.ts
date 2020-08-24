@@ -13,11 +13,11 @@ function run() {
         $ cplacejs-docs
         
     Options:
-        --repos, -r <repos>     Generate docs for specified repos
+        --repos, -r <repos>     Root directory of the repos
         -out, -o                Output path for the docs
         --upload, -u            Upload generated files to docs server requires your public key to be added on the server
         --verbose, -v           Enable verbose logging
-        --localOnly, -l         Build docs only for repo the script is executed in. Other repos will not be scanned for soc files
+        --localOnly, -l         Build docs only for repo the script is executed in. Other repos will not be scanned for doc files
         --html                  Output result as static html files. By default Markdown files are generated    
         
     `, {
@@ -44,7 +44,7 @@ function run() {
             },
             verbose: {
                 type: 'boolean',
-                alias: 'v',
+                alias: 'n',
                 default: false
             },
             localOnly: {
@@ -68,19 +68,19 @@ function run() {
         debug('Debugging enabled...');
     }
 
-    let cplaceRepos = [];
-    if (cli.flags.repos) {
-        cplaceRepos = cli.flags.repos.split(/\s*,\s*/);
-    }
+    // let cplaceRepos = [];
+    // if (cli.flags.repos) {
+    //     cplaceRepos = cli.flags.repos.split(/\s*,\s*/);
+    // }
 
     const config: ICplaceJSDocsConfig = {
-        repos: cplaceRepos,
+        repos: cli.flags.repos,
         destination: cli.flags.out || '',
         uploadToServer: cli.flags.upload,
         localOnly: cli.flags.localOnly,
         html: cli.flags.html
     };
-
+    console.log(JSON.stringify(config));
     try {
         const docsBuilder = new CplaceJSDocs(config);
         process.on('SIGTERM', () => {

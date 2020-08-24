@@ -8,7 +8,7 @@ export interface ICplaceJSDocsConfig {
     /**
      * Repos to build documentation for
      */
-    repos: Array<string>;
+    repos: string;
 
     /**
      * Destination for generated output
@@ -34,6 +34,7 @@ export interface ICplaceJSDocsConfig {
 export class CplaceJSDocs {
     public static readonly CPLACE_REPO_NAME = 'main';
     public static readonly PLATFORM_PLUGIN_NAME = 'cf.cplace.platform';
+    public static readonly DESCRIPTOR_FILE_NAME = 'pluginDescriptor.json';
 
     private plugins: Map<string, string>;
 
@@ -56,9 +57,8 @@ export class CplaceJSDocs {
         }
 
         const startTime = new Date().getTime();
-
+        console.log(`(CplaceJSDocs) Found ${this.plugins.size} plugins with jsdoc: ${Array.from(this.plugins.keys()).join(', ')}`);
         const docsBuilder = new DocsBuilder(this.plugins, this.buildConfig.destination, this.buildConfig.html);
-        console.log(`(CplaceJSDocs) Found plugins with jsdoc: ${Array.from(this.plugins.keys())}`);
         docsBuilder.start()
             .then(() => {
                 const endTime = new Date().getTime();
@@ -77,17 +77,10 @@ export class CplaceJSDocs {
 
         if (this.buildConfig.localOnly) {
             debug(`(CplaceJSDocs) Building cplaceJS docs only for current repo since localOnly execution... `);
-            repoPaths.add(path.dirname(CplaceJSDocs.getRepoRoot()));
+            repoPaths.add(path.dirname(this.getRepoRoot()));
         } else {
-            if (this.buildConfig.repos.length) {
-                debug(`(CplaceJSDocs) Building cplaceJS docs for ${this.buildConfig.repos.join(', ')}`);
-                this.buildConfig.repos.forEach((repoName) =>
-                    // @ts-ignore
-                    repoPaths.add(path.resolve(mainRepoPath, '..', 'repoName')));
-            } else {
-                debug(`(CplaceJSDocs) Building cplaceJS docs for all repos... `);
-                repoPaths = this.getAllPotentialRepos()
-            }
+            debug(`(CplaceJSDocs) Building cplaceJS docs for all repos... `);
+            repoPaths = this.getAllPotentialRepos()
         }
 
         repoPaths.forEach(repoPath => {
@@ -96,7 +89,7 @@ export class CplaceJSDocs {
                 const filePath = path.join(repoPath, file);
                 if (fs.lstatSync(filePath).isDirectory()) {
                     const potentialPluginName = path.basename(file);
-                    if (CplaceJSDocs.directoryLooksLikePlugin(filePath, potentialPluginName) && CplaceJSDocs.pluginHasCplaceJSDocs(filePath)) {
+                    if (CplaceJSDocs.directoryLooksLikePlugin(filePath) && CplaceJSDocs.pluginHasCplaceJSDocs(filePath)) {
                         plugins.set(potentialPluginName, filePath);
                     }
                 }
@@ -122,17 +115,18 @@ export class CplaceJSDocs {
         return repos;
     }
 
-    private static getRepoRoot() {
-        return '/Users/pragatisureka/software/collaboration-factory/repos/main';
+    private getRepoRoot() {
+        return this.buildConfig.repos;
+        // '/Users/pragatisureka/software/collaboration-factory/repos/main';
         // return process.cwd();
     }
 
     private getMainRepoPath(): string | null {
         let mainRepoPath = '';
         if (this.buildConfig.localOnly) {
-            mainRepoPath = path.resolve(CplaceJSDocs.getRepoRoot());
+            mainRepoPath = path.resolve(this.getRepoRoot());
         } else {
-            mainRepoPath = path.resolve(path.join(CplaceJSDocs.getRepoRoot(), '..', CplaceJSDocs.CPLACE_REPO_NAME));
+            mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_NAME));
         }
 
         if (!fs.existsSync(mainRepoPath)
@@ -142,8 +136,8 @@ export class CplaceJSDocs {
         return mainRepoPath;
     }
 
-    private static directoryLooksLikePlugin(pluginPath: string, potentialPluginName: string): boolean {
-        return fs.existsSync(path.join(pluginPath, `${potentialPluginName}.iml`)) // IML file
+    private static directoryLooksLikePlugin(pluginPath: string): boolean {
+        return fs.existsSync(path.join(pluginPath, CplaceJSDocs.DESCRIPTOR_FILE_NAME))
             && fs.existsSync(path.join(pluginPath, 'src')); // path to src directory - release-notes will be excluded
     }
 
@@ -152,10 +146,10 @@ export class CplaceJSDocs {
         return fs.existsSync(docsPath) && fs.lstatSync(docsPath).isDirectory();
     }
 
-    private static findPluginPath(pluginName: string, repoDependencies: string[], buildConfig: ICplaceJSDocsConfig): string {
+    private findPluginPath(pluginName: string, repoDependencies: string[], buildConfig: ICplaceJSDocsConfig): string {
         let relativePath = pluginName;
-        if (fs.existsSync(path.join(CplaceJSDocs.getRepoRoot(), relativePath))) {
-            return path.join(CplaceJSDocs.getRepoRoot(), relativePath);
+        if (fs.existsSync(path.join(this.getRepoRoot(), relativePath))) {
+            return path.join(this.getRepoRoot(), relativePath);
         }
         for (const repoName of repoDependencies) {
             relativePath = path.join('..', repoName, pluginName);

@@ -5,7 +5,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev:tsc": "tsc",
-        "clean": "rimraf dist/ *.tgz"
+        "clean": "rimraf dist/ *.tgz",
+        "build-docs": "node dist/index"
     },
     "main": "dist/index.js",
     "bin": {
