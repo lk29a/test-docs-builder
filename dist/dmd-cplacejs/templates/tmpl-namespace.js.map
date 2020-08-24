@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "tmpl-namespace.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/dmd-cplacejs/templates/tmpl-namespace.ts"
+  ],
+  "names": [],
+  "mappings": ";;;;;AAAA,0DAAkC;AAElC,MAAM,iBAAiB,GAAa,kBAAQ,CAAA;;SAEnC,CAAC;;;;;qBAKW,CAAC;CACrB,CAAC;AAGF,kBAAe,iBAAiB,CAAC"
+}

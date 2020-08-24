@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "baseJsdocConf.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../src/utils/baseJsdocConf.ts"
+  ],
+  "names": [],
+  "mappings": ";;AAAA,MAAM,QAAQ,GAAG;IACb,MAAM,EAAE;QACJ,kBAAkB,EAAE,IAAI;QACxB,cAAc,EAAE;YACZ,OAAO;SACV;KACJ;IACD,SAAS,EAAE;QACP,kBAAkB;KACrB;IACD,MAAM,EAAE;QACJ,UAAU,EAAE,MAAM;QAClB,SAAS,EAAE,IAAI;QACf,SAAS,EAAE,IAAI;QACf,SAAS,EAAE,oBAAoB;QAC/B,cAAc,EAAE,oBAAoB;KACvC;CACJ,CAAC;AAEF,kBAAe,QAAQ,CAAC"
+}

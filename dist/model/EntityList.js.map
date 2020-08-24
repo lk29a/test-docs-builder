@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "EntityList.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../src/model/EntityList.ts"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;GAEG;;AAGU,QAAA,YAAY,GAAG,IAAI,GAAG,EAAkB,CAAC;AAEzC,QAAA,UAAU,GAAG,IAAI,GAAG,EAAU,CAAC"
+}
