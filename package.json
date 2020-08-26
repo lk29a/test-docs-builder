@@ -8,7 +8,7 @@
         "clean": "rimraf dist/ *.tgz",
         "build-docs": "node dist/index"
     },
-    "main": "dist/index.js",
+    "main": "dist/model/CplaceJSDocs.js",
     "bin": {
         "cplacejs-docs": "dist/index.js"
     },
