@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", {value: true});
-
 function template(strings, ...keys) {
     return (function (...values) {
         let dict = values[values.length - 1] || {};
@@ -12,6 +11,5 @@ function template(strings, ...keys) {
         return result.join('');
     });
 }
-
 exports.default = template;
 //# sourceMappingURL=template.js.map

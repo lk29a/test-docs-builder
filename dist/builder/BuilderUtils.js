@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", {value: true});
 const constants_1 = require("./constants");
 const arrayLike = 'ArrayLike';
 const entityToLink = new Map();
-
 function groupData(templateData) {
     return templateData.reduce((groups, identifier) => {
         switch (identifier.kind) {
@@ -24,9 +23,7 @@ function groupData(templateData) {
         typedef: new Set()
     });
 }
-
 exports.groupData = groupData;
-
 function generateLinks(pluginShortName, groups) {
     groups.clazz.forEach(value => entityToLink.set(value, `/${constants_1.linkBase}/${pluginShortName}/${value.toLowerCase()}`));
     groups.typedef.forEach(value => {
@@ -34,9 +31,7 @@ function generateLinks(pluginShortName, groups) {
     });
     // console.log(entityToLink.forEach((val, key) => console.log(key, val)));
 }
-
 exports.generateLinks = generateLinks;
-
 function resolveDocsLinks(input, options) {
     let output = {};
     // special handling for ArrayLike because it is generally used as generic ArrayLike.<*> or ArrayLike.<string>
@@ -58,6 +53,5 @@ function resolveDocsLinks(input, options) {
     }
     return null;
 }
-
 exports.resolveDocsLinks = resolveDocsLinks;
 //# sourceMappingURL=BuilderUtils.js.map

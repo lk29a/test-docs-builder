@@ -177,8 +177,8 @@ export default class DocsBuilder {
         } else {
             const shortName = plugin.split('.').pop()
             return {
-                pluginShortName: shortName,
-                displayName: shortName,
+                pluginShortName: shortName || plugin,
+                displayName: shortName || plugin,
                 examplesTitle: 'Examples',
                 apiTitle: 'API'
             }

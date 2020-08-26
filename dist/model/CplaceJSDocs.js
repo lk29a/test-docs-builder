@@ -42,13 +42,11 @@ const path = __importStar(require("path"));
 const utils_1 = require("../utils");
 const DocsBuilder_1 = __importDefault(require("../builder/DocsBuilder"));
 const formatting_1 = require("../utils/formatting");
-
 class CplaceJSDocs {
     constructor(buildConfig) {
         this.buildConfig = buildConfig;
         this.plugins = this.setup();
     }
-
     build() {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.plugins.size) {
@@ -70,7 +68,6 @@ class CplaceJSDocs {
                 });
         });
     }
-
     setup() {
         let repoPaths = new Set();
         const plugins = new Map();
@@ -100,7 +97,6 @@ class CplaceJSDocs {
         });
         return plugins;
     }
-
     getAllPotentialRepos() {
         const repos = new Set();
         const mainRepoPath = this.getMainRepoPath();
@@ -116,13 +112,11 @@ class CplaceJSDocs {
         }
         return repos;
     }
-
     getRepoRoot() {
         return this.buildConfig.repos;
         // '/Users/pragatisureka/software/collaboration-factory/repos/main';
         // return process.cwd();
     }
-
     getMainRepoPath() {
         let mainRepoPath = '';
         if (this.buildConfig.localOnly) {
@@ -136,17 +130,14 @@ class CplaceJSDocs {
         }
         return mainRepoPath;
     }
-
     static directoryLooksLikePlugin(pluginPath) {
         return fs.existsSync(path.join(pluginPath, CplaceJSDocs.DESCRIPTOR_FILE_NAME))
             && fs.existsSync(path.join(pluginPath, 'src')); // path to src directory - release-notes will be excluded
     }
-
     static pluginHasCplaceJSDocs(pluginPath) {
         const docsPath = path.join(pluginPath, 'assets', 'cplaceJS');
         return fs.existsSync(docsPath) && fs.lstatSync(docsPath).isDirectory();
     }
-
     findPluginPath(pluginName, repoDependencies, buildConfig) {
         let relativePath = pluginName;
         if (fs.existsSync(path.join(this.getRepoRoot(), relativePath))) {
@@ -162,7 +153,6 @@ class CplaceJSDocs {
         throw Error(`Could not locate plugin ${pluginName}`);
     }
 }
-
 CplaceJSDocs.CPLACE_REPO_NAME = 'main';
 CplaceJSDocs.PLATFORM_PLUGIN_NAME = 'cf.cplace.platform';
 CplaceJSDocs.DESCRIPTOR_FILE_NAME = 'pluginDescriptor.json';

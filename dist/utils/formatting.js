@@ -1,15 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", {value: true});
-
 function formatDuration(milliSeconds) {
     const seconds = Math.floor(milliSeconds / 1000);
     const minutes = Math.floor(seconds / 60);
     const sec = seconds % 60;
     return `${pad(minutes, 2)}m${pad(sec, 2)}s`;
 }
-
 exports.formatDuration = formatDuration;
-
 function pad(number, digits) {
     let s = number.toString(10);
     while (s.length < digits) {
@@ -17,6 +14,5 @@ function pad(number, digits) {
     }
     return s;
 }
-
 exports.pad = pad;
 //# sourceMappingURL=formatting.js.map

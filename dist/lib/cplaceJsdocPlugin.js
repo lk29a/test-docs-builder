@@ -14,7 +14,6 @@ const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const env = require('jsdoc/env');
 const logger = require('jsdoc/util/logger');
-
 function getDocDirectories(path) {
     const _dirs = [];
     const files = fs.readdirSync(path);
@@ -30,7 +29,6 @@ function getDocDirectories(path) {
     }
     return _dirs;
 }
-
 /**
  * This is supposed to work only with a single cplace plugin
  */

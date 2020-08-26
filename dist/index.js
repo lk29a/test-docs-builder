@@ -8,7 +8,6 @@ const meow_1 = __importDefault(require("meow"));
 const CplaceJSDocs_1 = require("./model/CplaceJSDocs");
 const utils_1 = require("./utils");
 run();
-
 function run() {
     const cli = meow_1.default(`
     Usage:
@@ -94,5 +93,4 @@ function run() {
         console.error(utils_1.cerr`Failed to build docs: ${err.message}`);
     }
 }
-
 //# sourceMappingURL=index.js.map

@@ -1,0 +1,57 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc"]
+  },
+  "plugins": [
+    "plugins/markdown",
+    "node_modules/better-docs/category"
+  ],
+  "source": {
+    "include": [
+      "./docs"
+    ],
+    "exclude": [ "node_modules", "out", "examples", "static" ]
+  },
+  "templates": {
+    "default" : {
+      "outputSourceFiles": false,
+      "staticFiles": {
+        "include": ["static/"]
+      }
+    },
+    "css": [
+      "styles/cplacejs.css"
+    ],
+    "footerText": "cplaceJS API - Copyright 2018, collaboration Factory AG. All rights reserved.",
+    "logo": {
+      "url": "cplaceJs.png",
+      "width": "220px",
+      "link": "index.html"
+    },
+    "better-docs": {
+      "navigation": [
+        {
+          "label": "Impressum - Legal disclosure",
+          "href": "imprint.html"
+        },
+        {
+          "label": "Privacy",
+          "href": "https://www.iubenda.com/privacy-policy/88120034"
+        }
+      ]
+    }
+  },
+  "tabNames": {
+    "api": "API",
+    "tutorials": "Examples"
+  },
+  "opts": {
+    "encoding": "utf8",
+    "private": true,
+    "recurse": true,
+    "tutorials": "examples",
+    "template": "node_modules/better-docs",
+    "destination": "./out"
+  }
+}

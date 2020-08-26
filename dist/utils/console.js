@@ -19,9 +19,7 @@ exports.enableDebug = enableDebug;
 function debug(content) {
     DEBUG_ENABLED && console.debug(`\x1b[37m✹ ${content}\x1b[0m`);
 }
-
 exports.debug = debug;
-
 function cred(templateStrings, ...values) {
     let result = `\x1b[1;31m`;
     templateStrings.forEach((v, i) => {
@@ -30,9 +28,7 @@ function cred(templateStrings, ...values) {
     result += `\x1b[0m`;
     return result;
 }
-
 exports.cred = cred;
-
 function cerr(templateStrings, ...values) {
     let result = `✗ `;
     templateStrings.forEach((v, i) => {
@@ -40,9 +36,7 @@ function cerr(templateStrings, ...values) {
     });
     return cred`${result}`;
 }
-
 exports.cerr = cerr;
-
 function cgreen(templateStrings, ...values) {
     let result = `\x1b[1;32m`;
     templateStrings.forEach((v, i) => {
@@ -51,9 +45,7 @@ function cgreen(templateStrings, ...values) {
     result += `\x1b[0m`;
     return result;
 }
-
 exports.cgreen = cgreen;
-
 function csucc(templateStrings, ...values) {
     let result = `✓ `;
     templateStrings.forEach((v, i) => {
@@ -61,6 +53,5 @@ function csucc(templateStrings, ...values) {
     });
     return cgreen`${result}`;
 }
-
 exports.csucc = csucc;
 //# sourceMappingURL=console.js.map

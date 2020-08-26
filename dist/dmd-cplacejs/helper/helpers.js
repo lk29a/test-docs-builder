@@ -6,14 +6,11 @@ Object.defineProperty(exports, "__esModule", {value: true});
 const handlebars_1 = __importDefault(require("handlebars"));
 const ddata_1 = __importDefault(require("dmd/helpers/ddata"));
 const BuilderUtils_1 = require("../../builder/BuilderUtils");
-
 function typeDefs(options) {
     options.hash.kind = 'typedef';
     return handlebars_1.default.helpers.each(ddata_1.default._identifiers(options), options);
 }
-
 exports.typeDefs = typeDefs;
-
 /**
  * Overridden default
  * replaces {@link} tags with markdown links in the supplied input text
@@ -32,9 +29,7 @@ function inlineLinks(text, options) {
     }
     return text;
 }
-
 exports.inlineLinks = inlineLinks;
-
 /**
  * Overridden default
  * @param id {string} - the ID to link to, e.g. `external:XMLHttpRequest`, `GlobalClass#propOne` etc.
@@ -49,9 +44,7 @@ exports.inlineLinks = inlineLinks;
 function link(longname, options) {
     return options.fn(_link(longname, options));
 }
-
 exports.link = link;
-
 /**
  * Overridden default
  * e.g. namepaths `module:Something` or type expression `Array.<module:Something>`
@@ -109,6 +102,5 @@ function _link(input, options) {
     }
     return output;
 }
-
 exports._link = _link;
 //# sourceMappingURL=helpers.js.map

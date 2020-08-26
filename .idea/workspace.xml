@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b61c5a99-317f-49c1-8d46-96e3aca04e31" name="Default Changelist" comment="add dist folder temporarily" />
+    <list id="bef7bc69-36d9-476f-a7e2-f8054e152e82" name="no commit" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="improvement/cplace-jsdoc-builder" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="git@github.com:collaborationFactory/cplace-jsdocs.git" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1OoQvDfsOGg4pJSg1FyKO8DiyQE" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;JavaScript" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
+    <property name="javascript.nodejs.core.library.typings.version" value="10.17.28" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/cf.cplace.platform" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/dist/dmd-cplacejs/partials/typedef" />
+      <recent name="$PROJECT_DIR$/docs/cf.cplace.platform/docs" />
+      <recent name="$PROJECT_DIR$/src/dmd-cplacejs/templates" />
+      <recent name="$PROJECT_DIR$/src/model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/cf.cplace.platform" />
+      <recent name="$PROJECT_DIR$/docs/cf.cplace.platform/docs" />
+      <recent name="$PROJECT_DIR$/dist/dmd-cplacejs/partials" />
+      <recent name="$PROJECT_DIR$/docsold/cf.cplace.platform" />
+      <recent name="$PROJECT_DIR$/examples" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dev:tsc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev:tsc" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev:tsc" />
+        <item itemvalue="npm.dev:tsc" />
+        <item itemvalue="npm.dev:tsc" />
+        <item itemvalue="npm.dev:tsc" />
+        <item itemvalue="npm.dev:tsc" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b61c5a99-317f-49c1-8d46-96e3aca04e31" name="Default Changelist" comment="" />
+      <changelist id="bef7bc69-36d9-476f-a7e2-f8054e152e82" name="no commit" comment="" />
+      <created>1550573990932</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1550573990932</updated>
+      <workItem from="1550573992659" duration="4457000" />
+      <workItem from="1554363781190" duration="189000" />
+      <workItem from="1554364635604" duration="3617000" />
+      <workItem from="1554375586322" duration="1075000" />
+      <workItem from="1557754869772" duration="671000" />
+      <workItem from="1558436564144" duration="712000" />
+      <workItem from="1558441042427" duration="753000" />
+      <workItem from="1559129943465" duration="969000" />
+      <workItem from="1564641704226" duration="891000" />
+      <workItem from="1565335008405" duration="2409000" />
+      <workItem from="1566207293481" duration="10139000" />
+      <workItem from="1566287240522" duration="7553000" />
+      <workItem from="1566313280366" duration="6718000" />
+      <workItem from="1566374419318" duration="989000" />
+      <workItem from="1566376542082" duration="23755000" />
+      <workItem from="1566549559831" duration="1076000" />
+      <workItem from="1566552555996" duration="1119000" />
+      <workItem from="1566558999396" duration="1621000" />
+      <workItem from="1566805234086" duration="596000" />
+      <workItem from="1566806574772" duration="596000" />
+      <workItem from="1566824089568" duration="597000" />
+      <workItem from="1566829786082" duration="598000" />
+      <workItem from="1566974330139" duration="1337000" />
+      <workItem from="1572974777451" duration="1327000" />
+      <workItem from="1573034110165" duration="7867000" />
+      <workItem from="1573122225939" duration="19791000" />
+      <workItem from="1573491260529" duration="28137000" />
+      <workItem from="1574064404536" duration="503000" />
+      <workItem from="1574067513965" duration="13140000" />
+      <workItem from="1574175460043" duration="4930000" />
+      <workItem from="1574253221967" duration="10610000" />
+      <workItem from="1574846147284" duration="418000" />
+      <workItem from="1574848224471" duration="714000" />
+      <workItem from="1574856938971" duration="3138000" />
+      <workItem from="1574942170896" duration="597000" />
+      <workItem from="1575019938356" duration="198000" />
+      <workItem from="1575361684322" duration="598000" />
+      <workItem from="1575375936782" duration="4738000" />
+      <workItem from="1575465000146" duration="3027000" />
+      <workItem from="1575533545251" duration="1174000" />
+      <workItem from="1575535817298" duration="973000" />
+      <workItem from="1575973130553" duration="3031000" />
+      <workItem from="1576147982218" duration="1073000" />
+      <workItem from="1576162791869" duration="7000" />
+      <workItem from="1580379705697" duration="4471000" />
+      <workItem from="1580719882677" duration="160000" />
+      <workItem from="1580720102103" duration="3581000" />
+      <workItem from="1580822065562" duration="1179000" />
+      <workItem from="1580824655413" duration="1891000" />
+      <workItem from="1580893489975" duration="16354000" />
+      <workItem from="1581665064627" duration="3839000" />
+      <workItem from="1584444696854" duration="69000" />
+      <workItem from="1584459010786" duration="117000" />
+      <workItem from="1585123388397" duration="3537000" />
+      <workItem from="1585228847731" duration="480000" />
+      <workItem from="1585230371791" duration="393000" />
+      <workItem from="1585235595353" duration="10164000" />
+      <workItem from="1585649696597" duration="841000" />
+      <workItem from="1585672824471" duration="27000" />
+      <workItem from="1585722911802" duration="14443000" />
+      <workItem from="1585813139416" duration="6449000" />
+      <workItem from="1585992177940" duration="815000" />
+      <workItem from="1586158222090" duration="407000" />
+      <workItem from="1586159337467" duration="155000" />
+      <workItem from="1587645528435" duration="1826000" />
+      <workItem from="1588056144857" duration="597000" />
+      <workItem from="1593498095708" duration="1019000" />
+      <workItem from="1597733410461" duration="503000" />
+      <workItem from="1597734202058" duration="20754000" />
+    </task>
+    <task id="LOCAL-00001" summary="add jsdoc config and static files">
+      <created>1550648271242</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1550648271242</updated>
+    </task>
+    <task id="LOCAL-00002" summary="idea project files">
+      <created>1554364743900</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554364743900</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update config files">
+      <created>1557754926283</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557754926283</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add readme for home page">
+      <created>1559132396622</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1559132396623</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update font and privacy link">
+      <created>1559132420257</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1559132420257</updated>
+    </task>
+    <task id="LOCAL-00006" summary="leftover - backup">
+      <created>1566208117796</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1566208117796</updated>
+    </task>
+    <task id="LOCAL-00007" summary="initial implementation">
+      <created>1566545688325</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1566545688325</updated>
+    </task>
+    <task id="LOCAL-00008" summary="WIP - fixup">
+      <created>1566974422372</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1566974422372</updated>
+    </task>
+    <task id="LOCAL-00009" summary="WIP">
+      <created>1580380692098</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1580380692098</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add dmd template and helpers">
+      <created>1581066236674</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1581066236674</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update config">
+      <created>1581066267436</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1581066267436</updated>
+    </task>
+    <task id="LOCAL-00012" summary="separate processing per plugin">
+      <created>1581066480219</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1581066480219</updated>
+    </task>
+    <task id="LOCAL-00013" summary="separate processing per plugin">
+      <created>1581066554434</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1581066554434</updated>
+    </task>
+    <task id="LOCAL-00014" summary="wip backup">
+      <created>1585228970940</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1585228970940</updated>
+    </task>
+    <task id="LOCAL-00015" summary="wip backup 2">
+      <created>1593498213899</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1593498213899</updated>
+    </task>
+    <task id="LOCAL-00016" summary="adapt for jenkins &amp; hugo docs">
+      <created>1598257391914</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1598257391914</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add dist folder temporarily">
+      <created>1598257768725</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1598257768725</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.hbs" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="BRANCHES_LOG">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="improvement/cplace-jsdoc-builder" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="feature/cplaceJS-docs" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="add jsdoc config and static files" />
+    <MESSAGE value="idea project files" />
+    <MESSAGE value="update config files" />
+    <MESSAGE value="add readme for home page" />
+    <MESSAGE value="update font and privacy link" />
+    <MESSAGE value="leftover - backup" />
+    <MESSAGE value="initial implementation" />
+    <MESSAGE value="WIP - fixup" />
+    <MESSAGE value="WIP" />
+    <MESSAGE value="add dmd template and helpers" />
+    <MESSAGE value="update config" />
+    <MESSAGE value="separate processing per plugin" />
+    <MESSAGE value="wip backup" />
+    <MESSAGE value="wip backup 2" />
+    <MESSAGE value="adapt for jenkins &amp; hugo docs" />
+    <MESSAGE value="add dist folder temporarily" />
+    <option name="LAST_COMMIT_MESSAGE" value="add dist folder temporarily" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-318" y="-1362" width="2360" height="1261" key="DiffContextDialog" timestamp="1597733924299">
+      <screen x="-418" y="-1417" width="2560" height="1417" />
+    </state>
+    <state x="-318" y="-1362" width="2360" height="1261" key="DiffContextDialog/0.23.1680.1027/-418.-1417.2560.1417@-418.-1417.2560.1417" timestamp="1597733924299" />
+    <state width="1638" height="424" key="GridCell.Tab.0.bottom" timestamp="1597760942237">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="424" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1597760942237" />
+    <state width="1638" height="424" key="GridCell.Tab.0.center" timestamp="1597760942234">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="424" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1597760942234" />
+    <state width="1638" height="424" key="GridCell.Tab.0.left" timestamp="1597760942232">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="424" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1597760942232" />
+    <state width="1638" height="424" key="GridCell.Tab.0.right" timestamp="1597760942236">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="424" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1597760942236" />
+    <state x="576" y="-1012" key="RollbackChangesDialog" timestamp="1597735410031">
+      <screen x="-418" y="-1440" width="2560" height="1440" />
+    </state>
+    <state x="576" y="-1012" key="RollbackChangesDialog/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597735410031" />
+    <state x="592" y="-970" width="540" height="524" key="StructurePopup" timestamp="1597744860848">
+      <screen x="-418" y="-1440" width="2560" height="1440" />
+    </state>
+    <state x="592" y="-970" width="540" height="524" key="StructurePopup/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597744860848" />
+    <state width="500" height="400" key="SwitcherDM" timestamp="1598257595502">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597754041720" />
+    <state width="762" height="549" key="SwitcherDM/0.0.1680.1050/-449.-1440.2560.1440@-449.-1440.2560.1440" timestamp="1597838194833" />
+    <state width="500" height="400" key="SwitcherDM/0.0.1680.1050@0.0.1680.1050" timestamp="1598257595502" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1598258908319">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1598258908319" />
+    <state x="-318" y="-1340" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1597737599749">
+      <screen x="-418" y="-1440" width="2560" height="1440" />
+    </state>
+    <state x="-318" y="-1340" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597737599749" />
+    <state x="593" y="-979" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1593498294205">
+      <screen x="-418" y="-1440" width="2560" height="1440" />
+    </state>
+    <state x="593" y="-979" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1593498294205" />
+    <state x="568" y="-971" width="588" height="502" key="find.popup" timestamp="1597736158529">
+      <screen x="-418" y="-1440" width="2560" height="1440" />
+    </state>
+    <state x="568" y="-971" width="588" height="502" key="find.popup/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597736158529" />
+    <state x="527" y="-1109" width="670" height="676" key="search.everywhere.popup" timestamp="1597744626331">
+      <screen x="-418" y="-1440" width="2560" height="1440" />
+    </state>
+    <state x="527" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597744626331" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.20336391" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
