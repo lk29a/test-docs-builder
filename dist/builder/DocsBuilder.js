@@ -1,28 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-
-        function step(result) {
-            result.done ? resolve(result.value) : new P(function (resolve) {
-                resolve(result.value);
-            }).then(fulfilled, rejected);
-        }
-
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -34,9 +15,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : {"default": mod};
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 // create temporary working directory
 const os = __importStar(require("os"));
 const utils_1 = require("../utils");
@@ -103,9 +84,10 @@ class DocsBuilder {
     buildForPlugin(plugin, jsdocPaths) {
         // todo fix-this do not require manifest file.
         let metaData = DocsBuilder.getMetaData(jsdocPaths.sourceDir, plugin);
-        if (!metaData.pluginShortName) {
+        if (metaData.pluginShortName) {
             metaData.pluginShortName = metaData.pluginShortName.replace(/\s+/g, '-').toLowerCase();
-        } else {
+        }
+        else {
             console.error(`(CplaceJSDocs) Incorrect meta data cannot build docs for ${plugin}`);
             return;
         }
@@ -180,7 +162,8 @@ class DocsBuilder {
         const file = path.resolve(dir, 'manifest.json');
         if (fs.existsSync(file)) {
             return JSON.parse(fs.readFileSync(file, 'utf-8'));
-        } else {
+        }
+        else {
             const shortName = plugin.split('.').pop();
             return {
                 pluginShortName: shortName || plugin,
@@ -204,7 +187,7 @@ class DocsBuilder {
         // jsDocConf.plugins.push(jsdocPaths.jsdocPlugin);
         const content = JSON.stringify(jsDocConf, null, 4);
         utils_1.debug('Writing jsdoc configuration... \n' + content);
-        fs.writeFileSync(jsdocPaths.config, content, {encoding: 'utf8'});
+        fs.writeFileSync(jsdocPaths.config, content, { encoding: 'utf8' });
     }
     getAllDocsPaths() {
         const docsPaths = {};

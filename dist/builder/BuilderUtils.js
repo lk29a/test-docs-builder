@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("./constants");
 const arrayLike = 'ArrayLike';
 const entityToLink = new Map();
@@ -46,7 +46,8 @@ function resolveDocsLinks(input, options) {
         // if input refers to the class to which it belongs
         if (options.data.parent === undefined) {
             output.url = entityToLink.get(input);
-        } else {
+        }
+        else {
             output.url = '#' + input.toLowerCase();
         }
         return output;

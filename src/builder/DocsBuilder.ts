@@ -83,7 +83,7 @@ export default class DocsBuilder {
         // todo fix-this do not require manifest file.
         let metaData: PluginMetaData = DocsBuilder.getMetaData(jsdocPaths.sourceDir, plugin);
 
-        if (!metaData.pluginShortName) {
+        if (metaData.pluginShortName) {
             metaData.pluginShortName = metaData.pluginShortName.replace(/\s+/g, '-').toLowerCase();
         } else {
             console.error(`(CplaceJSDocs) Incorrect meta data cannot build docs for ${plugin}`);

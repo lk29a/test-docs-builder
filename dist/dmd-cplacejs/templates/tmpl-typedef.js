@@ -1,10 +1,10 @@
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : {"default": mod};
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 const template_1 = __importDefault(require("./template"));
-const typedefTemplate = template_1.default`
+const typedefTemplate = template_1.default `
 ---
 title: ${0}
 weight: 2
