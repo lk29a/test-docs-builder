@@ -33,6 +33,7 @@ export interface ICplaceJSDocsConfig {
 
 export class CplaceJSDocs {
     public static readonly CPLACE_REPO_NAME = 'main';
+    public static readonly CPLACE_REPO_ALT_NAME = 'cplace';
     public static readonly PLATFORM_PLUGIN_NAME = 'cf.cplace.platform';
     public static readonly DESCRIPTOR_FILE_NAME = 'pluginDescriptor.json';
 
@@ -127,12 +128,15 @@ export class CplaceJSDocs {
             mainRepoPath = path.resolve(this.getRepoRoot());
         } else {
             mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_NAME));
+            // if repo is checked out as cplace
+            if (!fs.existsSync(mainRepoPath)) {
+                mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_ALT_NAME));
+            }
+            if(!fs.existsSync(path.join(mainRepoPath, CplaceJSDocs.PLATFORM_PLUGIN_NAME))) {
+                return null;
+            }
         }
 
-        if (!fs.existsSync(mainRepoPath)
-            || !fs.existsSync(path.join(mainRepoPath, CplaceJSDocs.PLATFORM_PLUGIN_NAME))) {
-            return null;
-        }
         return mainRepoPath;
     }
 

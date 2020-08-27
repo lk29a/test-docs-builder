@@ -1,28 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-
-        function step(result) {
-            result.done ? resolve(result.value) : new P(function (resolve) {
-                resolve(result.value);
-            }).then(fulfilled, rejected);
-        }
-
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -34,9 +15,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : {"default": mod};
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const utils_1 = require("../utils");
@@ -63,9 +44,9 @@ class CplaceJSDocs {
             const docsBuilder = new DocsBuilder_1.default(this.plugins, this.buildConfig.destination, this.buildConfig.html);
             docsBuilder.start()
                 .then(() => {
-                    const endTime = new Date().getTime();
-                    console.log(`CplaceJS docs built successfully (${formatting_1.formatDuration(endTime - startTime)})`);
-                });
+                const endTime = new Date().getTime();
+                console.log(`CplaceJS docs built successfully (${formatting_1.formatDuration(endTime - startTime)})`);
+            });
         });
     }
     setup() {
@@ -79,7 +60,8 @@ class CplaceJSDocs {
         if (this.buildConfig.localOnly) {
             utils_1.debug(`(CplaceJSDocs) Building cplaceJS docs only for current repo since localOnly execution... `);
             repoPaths.add(path.dirname(this.getRepoRoot()));
-        } else {
+        }
+        else {
             utils_1.debug(`(CplaceJSDocs) Building cplaceJS docs for all repos... `);
             repoPaths = this.getAllPotentialRepos();
         }
@@ -121,12 +103,16 @@ class CplaceJSDocs {
         let mainRepoPath = '';
         if (this.buildConfig.localOnly) {
             mainRepoPath = path.resolve(this.getRepoRoot());
-        } else {
-            mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_NAME));
         }
-        if (!fs.existsSync(mainRepoPath)
-            || !fs.existsSync(path.join(mainRepoPath, CplaceJSDocs.PLATFORM_PLUGIN_NAME))) {
-            return null;
+        else {
+            mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_NAME));
+            // if repo is checked out as cplace
+            if (!fs.existsSync(mainRepoPath)) {
+                mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_ALT_NAME));
+            }
+            if (!fs.existsSync(path.join(mainRepoPath, CplaceJSDocs.PLATFORM_PLUGIN_NAME))) {
+                return null;
+            }
         }
         return mainRepoPath;
     }
@@ -149,11 +135,12 @@ class CplaceJSDocs {
                 return relativePath;
             }
         }
-        console.error(utils_1.cerr`Could not locate plugin ${pluginName}`);
+        console.error(utils_1.cerr `Could not locate plugin ${pluginName}`);
         throw Error(`Could not locate plugin ${pluginName}`);
     }
 }
 CplaceJSDocs.CPLACE_REPO_NAME = 'main';
+CplaceJSDocs.CPLACE_REPO_ALT_NAME = 'cplace';
 CplaceJSDocs.PLATFORM_PLUGIN_NAME = 'cf.cplace.platform';
 CplaceJSDocs.DESCRIPTOR_FILE_NAME = 'pluginDescriptor.json';
 exports.CplaceJSDocs = CplaceJSDocs;
