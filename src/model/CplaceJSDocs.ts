@@ -118,7 +118,6 @@ export class CplaceJSDocs {
 
     private getRepoRoot() {
         return this.buildConfig.repos;
-        // '/Users/pragatisureka/software/collaboration-factory/repos/main';
         // return process.cwd();
     }
 
@@ -127,26 +126,21 @@ export class CplaceJSDocs {
         if (this.buildConfig.localOnly) {
             mainRepoPath = path.resolve(this.getRepoRoot());
         } else {
-            console.error('')
             mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_NAME));
-            console.error('trying', mainRepoPath)
             // if repo is checked out as cplace
             if (!fs.existsSync(mainRepoPath)) {
                 mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_ALT_NAME));
-                console.error('trying', mainRepoPath)
             }
             if(!fs.existsSync(path.join(mainRepoPath, CplaceJSDocs.PLATFORM_PLUGIN_NAME))) {
                 console.error('not exists', mainRepoPath)
                 return null;
             }
         }
-
         return mainRepoPath;
     }
 
     private static directoryLooksLikePlugin(pluginPath: string): boolean {
-        return fs.existsSync(path.join(pluginPath, CplaceJSDocs.DESCRIPTOR_FILE_NAME))
-            && fs.existsSync(path.join(pluginPath, 'src')); // path to src directory - release-notes will be excluded
+        return fs.existsSync(path.join(pluginPath, 'src')); // path to src directory - release-notes will be excluded
     }
 
     private static pluginHasCplaceJSDocs(pluginPath: string): boolean {
