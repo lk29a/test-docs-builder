@@ -1,8 +1,8 @@
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+    return (mod && mod.__esModule) ? mod : {"default": mod};
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 const handlebars_1 = __importDefault(require("handlebars"));
 const ddata_1 = __importDefault(require("dmd/helpers/ddata"));
 const BuilderUtils_1 = require("../../builder/BuilderUtils");
@@ -72,36 +72,31 @@ function _link(input, options) {
     */
     if ((matches = input.match(/.*?<(.*?)>/))) {
         namepath = matches[1];
-    }
-    else {
+    } else {
         namepath = input;
     }
-    options.hash = { id: namepath };
+    options.hash = {id: namepath};
     linked = ddata_1.default._identifier(options);
     if (!linked) {
-        options.hash = { longname: namepath };
+        options.hash = {longname: namepath};
         linked = ddata_1.default._identifier(options);
     }
     if (!linked) {
-        output = { name: input, url: null };
-    }
-    else {
+        output = {name: input, url: null};
+    } else {
         output.name = input.replace(namepath, linked.name);
         if (ddata_1.default.isExternal.call(linked)) {
             if (linked.description) {
                 output.url = '#' + ddata_1.default.anchorName.call(linked, options);
-            }
-            else {
+            } else {
                 if (linked.see && linked.see.length) {
                     var firstLink = ddata_1.default.parseLink(linked.see[0])[0];
                     output.url = firstLink ? firstLink.url : linked.see[0];
-                }
-                else {
+                } else {
                     output.url = null;
                 }
             }
-        }
-        else {
+        } else {
             output.url = '#' + ddata_1.default.anchorName.call(linked, options);
         }
     }

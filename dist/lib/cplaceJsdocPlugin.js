@@ -9,7 +9,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const env = require('jsdoc/env');
@@ -48,13 +48,12 @@ exports.handlers = {
                 const manifest = fs.readFileSync(manifestFile, 'utf-8');
                 env.cplaceJSDocs.pluginDocs = JSON.parse(manifest);
                 env.cplaceJSDocs.pluginDocs.base = base;
-            }
-            else {
+            } else {
                 logger.warn('No manifest file found. Skipping', plugin);
             }
         });
     },
-    fileBegin: ({ filename }) => {
+    fileBegin: ({filename}) => {
         const pluginDocs = env.cplaceJSDocs.pluginDocs;
         const plugins = Object.keys(pluginDocs);
         for (let i = 0; i < plugins.length; i++) {
@@ -64,7 +63,7 @@ exports.handlers = {
             }
         }
     },
-    newDoclet: ({ doclet }) => {
+    newDoclet: ({doclet}) => {
         const filename = path.join(doclet.meta.path, doclet.meta.filename);
         if (env.cplaceJSDocs.files[filename] && doclet.scope === 'global') {
             const plugin = env.cplaceJSDocs.files[filename];

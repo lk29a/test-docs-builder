@@ -1,16 +1,21 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RED_CROSS = cred `✗`;
-exports.GREEN_CHECK = cgreen `✓`;
+Object.defineProperty(exports, "__esModule", {value: true});
+exports.RED_CROSS = cred`✗`;
+exports.GREEN_CHECK = cgreen`✓`;
 let DEBUG_ENABLED = false;
+
 function isDebugEnabled() {
     return DEBUG_ENABLED;
 }
+
 exports.isDebugEnabled = isDebugEnabled;
+
 function enableDebug(debugEnabled = true) {
     DEBUG_ENABLED = debugEnabled;
 }
+
 exports.enableDebug = enableDebug;
+
 function debug(content) {
     DEBUG_ENABLED && console.debug(`\x1b[37m✹ ${content}\x1b[0m`);
 }
@@ -29,7 +34,7 @@ function cerr(templateStrings, ...values) {
     templateStrings.forEach((v, i) => {
         result += v + (values[i] || '');
     });
-    return cred `${result}`;
+    return cred`${result}`;
 }
 exports.cerr = cerr;
 function cgreen(templateStrings, ...values) {
@@ -46,7 +51,7 @@ function csucc(templateStrings, ...values) {
     templateStrings.forEach((v, i) => {
         result += v + (values[i] || '');
     });
-    return cgreen `${result}`;
+    return cgreen`${result}`;
 }
 exports.csucc = csucc;
 //# sourceMappingURL=console.js.map

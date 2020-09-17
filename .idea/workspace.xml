@@ -10,12 +10,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b61c5a99-317f-49c1-8d46-96e3aca04e31" name="Default Changelist" comment="add dist folder temporarily" />
+    <list default="true" id="b61c5a99-317f-49c1-8d46-96e3aca04e31" name="Default Changelist" comment="do not check for pluginDescriptor file" />
     <list id="bef7bc69-36d9-476f-a7e2-f8054e152e82" name="no commit" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +70,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;JavaScript" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
     <property name="javascript.nodejs.core.library.typings.version" value="10.17.28" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/cf.cplace.platform" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -103,17 +100,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="dev:tsc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -215,6 +201,7 @@
       <workItem from="1593498095708" duration="1019000" />
       <workItem from="1597733410461" duration="503000" />
       <workItem from="1597734202058" duration="20754000" />
+      <workItem from="1598516006287" duration="2587000" />
     </task>
     <task id="LOCAL-00001" summary="add jsdoc config and static files">
       <created>1550648271242</created>
@@ -335,7 +322,28 @@
       <option name="project" value="LOCAL" />
       <updated>1598257768725</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="add debug logs">
+      <created>1598516123649</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1598516123649</updated>
+    </task>
+    <task id="LOCAL-00019" summary="do not check for pluginDescriptor file">
+      <created>1598860335072</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1598860335072</updated>
+    </task>
+    <task id="LOCAL-00020" summary="do not check for pluginDescriptor file">
+      <created>1598860348572</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1598860348572</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,19 +362,7 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -422,7 +418,9 @@
     <MESSAGE value="wip backup 2" />
     <MESSAGE value="adapt for jenkins &amp; hugo docs" />
     <MESSAGE value="add dist folder temporarily" />
-    <option name="LAST_COMMIT_MESSAGE" value="add dist folder temporarily" />
+    <MESSAGE value="add debug logs" />
+    <MESSAGE value="do not check for pluginDescriptor file" />
+    <option name="LAST_COMMIT_MESSAGE" value="do not check for pluginDescriptor file" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -461,9 +459,11 @@
     <state width="500" height="445" key="SwitcherDM/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597754041720" />
     <state width="762" height="549" key="SwitcherDM/0.0.1680.1050/-449.-1440.2560.1440@-449.-1440.2560.1440" timestamp="1597838194833" />
     <state width="500" height="400" key="SwitcherDM/0.0.1680.1050@0.0.1680.1050" timestamp="1598257595502" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1598258908319">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="252" y="-1077" key="Vcs.Push.Dialog.v2" timestamp="1598860356070">
+      <screen x="-418" y="-1440" width="2560" height="1440" />
     </state>
+    <state x="161" y="-1077" key="Vcs.Push.Dialog.v2/-509.-1440.2560.1440/0.0.1680.1050@-509.-1440.2560.1440" timestamp="1598516139249" />
+    <state x="252" y="-1077" key="Vcs.Push.Dialog.v2/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1598860356070" />
     <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1598258908319" />
     <state x="-318" y="-1340" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1597737599749">
       <screen x="-418" y="-1440" width="2560" height="1440" />
@@ -477,10 +477,10 @@
       <screen x="-418" y="-1440" width="2560" height="1440" />
     </state>
     <state x="568" y="-971" width="588" height="502" key="find.popup/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597736158529" />
-    <state x="527" y="-1109" width="670" height="676" key="search.everywhere.popup" timestamp="1597744626331">
+    <state x="527" y="-1109" width="670" height="676" key="search.everywhere.popup" timestamp="1598860074568">
       <screen x="-418" y="-1440" width="2560" height="1440" />
     </state>
-    <state x="527" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1597744626331" />
+    <state x="527" y="-1109" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050/-418.-1440.2560.1440@-418.-1440.2560.1440" timestamp="1598860074568" />
   </component>
   <component name="masterDetails">
     <states>

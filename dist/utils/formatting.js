@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 function formatDuration(milliSeconds) {
     const seconds = Math.floor(milliSeconds / 1000);
     const minutes = Math.floor(seconds / 60);

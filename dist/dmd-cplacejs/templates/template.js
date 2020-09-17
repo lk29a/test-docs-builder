@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 function template(strings, ...keys) {
     return (function (...values) {
         let dict = values[values.length - 1] || {};

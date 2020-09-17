@@ -1,1 +1,10 @@
-{"version":3,"file":"tmpl-class.js","sourceRoot":"","sources":["../../../src/dmd-cplacejs/templates/tmpl-class.ts"],"names":[],"mappings":";;;;;AAAA,0DAAkC;AAElC,MAAM,aAAa,GAAa,kBAAQ,CAAA;;SAE/B,CAAC;;;;;iBAKO,CAAC;CACjB,CAAC;AAGF,kBAAe,aAAa,CAAC"}
+{
+  "version": 3,
+  "file": "tmpl-class.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/dmd-cplacejs/templates/tmpl-class.ts"
+  ],
+  "names": [],
+  "mappings": ";;;;;AAAA,0DAAkC;AAElC,MAAM,aAAa,GAAa,kBAAQ,CAAA;;SAE/B,CAAC;;;;;iBAKO,CAAC;CACjB,CAAC;AAGF,kBAAe,aAAa,CAAC"
+}

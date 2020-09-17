@@ -1,1 +1,10 @@
-{"version":3,"file":"tmpl-typedef.js","sourceRoot":"","sources":["../../../src/dmd-cplacejs/templates/tmpl-typedef.ts"],"names":[],"mappings":";;;;;AAAA,0DAAkC;AAElC,MAAM,eAAe,GAAa,kBAAQ,CAAA;;SAEjC,CAAC;;;;;;CAMT,CAAC;AAGF,kBAAe,eAAe,CAAC"}
+{
+  "version": 3,
+  "file": "tmpl-typedef.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/dmd-cplacejs/templates/tmpl-typedef.ts"
+  ],
+  "names": [],
+  "mappings": ";;;;;AAAA,0DAAkC;AAElC,MAAM,eAAe,GAAa,kBAAQ,CAAA;;SAEjC,CAAC;;;;;;CAMT,CAAC;AAGF,kBAAe,eAAe,CAAC"
+}

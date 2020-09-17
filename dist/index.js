@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+    return (mod && mod.__esModule) ? mod : {"default": mod};
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 const meow_1 = __importDefault(require("meow"));
 const CplaceJSDocs_1 = require("./model/CplaceJSDocs");
 const utils_1 = require("./utils");
@@ -88,10 +88,9 @@ function run() {
         }, () => {
             setTimeout(() => process.exit(1), 200);
         });
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
-        console.error(utils_1.cerr `Failed to build docs: ${err.message}`);
+        console.error(utils_1.cerr`Failed to build docs: ${err.message}`);
     }
 }
 //# sourceMappingURL=index.js.map
