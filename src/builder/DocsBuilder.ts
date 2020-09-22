@@ -26,7 +26,7 @@ export default class DocsBuilder {
 
     private workingDir: string;
 
-    constructor(private readonly plugins: Map<string, string>, private readonly destination: string, private readonly outputHtml) {
+    constructor(private readonly plugins: Map<string, string>, private readonly destination: string) {
         this.workingDir = DocsBuilder.createTemporaryWorkingDir();
     }
 

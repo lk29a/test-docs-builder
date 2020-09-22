@@ -52,12 +52,12 @@ const tmpl_typedef_1 = __importDefault(require("../dmd-cplacejs/templates/tmpl-t
 const BuilderUtils_1 = require("./BuilderUtils");
 require("../dmd-cplacejs/helper/helpers");
 class DocsBuilder {
-    constructor(plugins, destination, outputHtml) {
+    constructor(plugins, destination) {
         this.plugins = plugins;
         this.destination = destination;
-        this.outputHtml = outputHtml;
         this.workingDir = DocsBuilder.createTemporaryWorkingDir();
     }
+
     static createTemporaryWorkingDir() {
         const osTempDir = os.tmpdir();
         const tmpDir = path.join(osTempDir, 'cplaceJS-docs-builder');

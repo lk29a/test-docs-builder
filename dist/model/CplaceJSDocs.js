@@ -41,7 +41,7 @@ class CplaceJSDocs {
             }
             const startTime = new Date().getTime();
             console.log(`(CplaceJSDocs) Found ${this.plugins.size} plugins with jsdoc: ${Array.from(this.plugins.keys()).join(', ')}`);
-            const docsBuilder = new DocsBuilder_1.default(this.plugins, this.buildConfig.destination, this.buildConfig.html);
+            const docsBuilder = new DocsBuilder_1.default(this.plugins, this.buildConfig.destination);
             docsBuilder.start()
                 .then(() => {
                 const endTime = new Date().getTime();
@@ -50,21 +50,15 @@ class CplaceJSDocs {
         });
     }
     setup() {
-        let repoPaths = new Set();
+        let repoPaths;
         const plugins = new Map();
         const mainRepoPath = this.getMainRepoPath();
         if (mainRepoPath === null) {
             console.error(`(CplaceJSDocs) Main repo cannot be found...`);
             process.exit(1);
         }
-        if (this.buildConfig.localOnly) {
-            utils_1.debug(`(CplaceJSDocs) Building cplaceJS docs only for current repo since localOnly execution... `);
-            repoPaths.add(path.dirname(this.getRepoRoot()));
-        }
-        else {
-            utils_1.debug(`(CplaceJSDocs) Building cplaceJS docs for all repos... `);
-            repoPaths = this.getAllPotentialRepos();
-        }
+        utils_1.debug(`(CplaceJSDocs) Building cplaceJS docs for all repos... `);
+        repoPaths = this.getAllPotentialRepos();
         repoPaths.forEach(repoPath => {
             const files = fs.readdirSync(repoPath);
             files.forEach(file => {
@@ -96,47 +90,25 @@ class CplaceJSDocs {
     }
     getRepoRoot() {
         return this.buildConfig.repos;
-        // '/Users/pragatisureka/software/collaboration-factory/repos/main';
-        // return process.cwd();
     }
     getMainRepoPath() {
-        let mainRepoPath = '';
-        if (this.buildConfig.localOnly) {
-            mainRepoPath = path.resolve(this.getRepoRoot());
+        let mainRepoPath;
+        mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_NAME));
+        // if repo is checked out as cplace
+        if (!fs.existsSync(mainRepoPath)) {
+            mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_ALT_NAME));
         }
-        else {
-            mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_NAME));
-            // if repo is checked out as cplace
-            if (!fs.existsSync(mainRepoPath)) {
-                mainRepoPath = path.resolve(path.join(this.getRepoRoot(), CplaceJSDocs.CPLACE_REPO_ALT_NAME));
-            }
-            if (!fs.existsSync(path.join(mainRepoPath, CplaceJSDocs.PLATFORM_PLUGIN_NAME))) {
-                return null;
-            }
+        if (!fs.existsSync(path.join(mainRepoPath, CplaceJSDocs.PLATFORM_PLUGIN_NAME))) {
+            return null;
         }
         return mainRepoPath;
     }
     static directoryLooksLikePlugin(pluginPath) {
-        return fs.existsSync(path.join(pluginPath, CplaceJSDocs.DESCRIPTOR_FILE_NAME))
-            && fs.existsSync(path.join(pluginPath, 'src')); // path to src directory - release-notes will be excluded
+        return fs.existsSync(path.join(pluginPath, 'src'));
     }
     static pluginHasCplaceJSDocs(pluginPath) {
         const docsPath = path.join(pluginPath, 'assets', 'cplaceJS');
         return fs.existsSync(docsPath) && fs.lstatSync(docsPath).isDirectory();
-    }
-    findPluginPath(pluginName, repoDependencies, buildConfig) {
-        let relativePath = pluginName;
-        if (fs.existsSync(path.join(this.getRepoRoot(), relativePath))) {
-            return path.join(this.getRepoRoot(), relativePath);
-        }
-        for (const repoName of repoDependencies) {
-            relativePath = path.join('..', repoName, pluginName);
-            if (fs.existsSync(relativePath)) {
-                return relativePath;
-            }
-        }
-        console.error(utils_1.cerr `Could not locate plugin ${pluginName}`);
-        throw Error(`Could not locate plugin ${pluginName}`);
     }
 }
 CplaceJSDocs.CPLACE_REPO_NAME = 'main';
