@@ -3,6 +3,7 @@ import * as os from 'os';
 import {debug} from '../utils';
 import * as path from 'path';
 import * as fs from 'fs';
+import {existsSync} from 'fs';
 import * as rimraf from 'rimraf';
 import {copySync, ensureDirSync, mkdirpSync} from 'fs-extra';
 import jsdoc2md from 'jsdoc-to-markdown';
@@ -12,7 +13,6 @@ import namespaceTemplate from '../dmd-cplacejs/templates/tmpl-namespace';
 import typedefTemplate from '../dmd-cplacejs/templates/tmpl-typedef';
 import {generateLinks, groupData} from './BuilderUtils';
 import '../dmd-cplacejs/helper/helpers'
-import {PluginMetaData} from './constants';
 
 interface JsdocPaths {
     sourceDir: string;
@@ -67,13 +67,8 @@ export default class DocsBuilder {
     }
 
     buildForPlugin(plugin: string, jsdocPaths: JsdocPaths) {
-        // todo fix-this do not require manifest file.
-        let metaData: PluginMetaData = DocsBuilder.getMetaData(jsdocPaths.sourceDir, plugin);
-
-        if (metaData.pluginShortName) {
-            metaData.pluginShortName = metaData.pluginShortName.replace(/\s+/g, '-').toLowerCase();
-        } else {
-            console.error(`(CplaceJSDocs) Incorrect meta data cannot build docs for ${plugin}`);
+        // if plugin does not contain any js files return
+        if (!DocsBuilder.containsJsFiles(path.join(jsdocPaths.sourceDir, 'docs'))) {
             return;
         }
 
@@ -122,21 +117,6 @@ export default class DocsBuilder {
         fs.writeFileSync(path.resolve(outputPath, 'helper-types.md'), output);
     }
 
-    private static getMetaData(dir: string, plugin: string): PluginMetaData {
-        const file = path.resolve(dir, 'manifest.json');
-        if (fs.existsSync(file)) {
-            return JSON.parse(fs.readFileSync(file, 'utf-8'));
-        } else {
-            const shortName = plugin.split('.').pop()
-            return {
-                pluginShortName: shortName || plugin,
-                displayName: shortName || plugin,
-                examplesTitle: 'Examples',
-                apiTitle: 'API'
-            }
-        }
-    }
-
     private copyDocsFromPlugins() {
         this.plugins.forEach((pluginPath, pluginName) => {
             copySync(
@@ -144,6 +124,27 @@ export default class DocsBuilder {
                 path.join(this.workingDir, 'allDocs', pluginName)
             );
         });
+    }
+
+    private static containsJsFiles(dir): boolean {
+        if (!existsSync(dir)) {
+            return false;
+        }
+
+        const files = fs.readdirSync(dir);
+        for (let i = 0; i < files.length; i++) {
+            const filename = path.join(dir, files[i]);
+            const stat = fs.lstatSync(filename);
+            if (stat.isDirectory()) {
+                if (this.containsJsFiles(filename)) {
+                    return true;
+                }
+            } else if (filename.indexOf('.js') >= 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static generateConfiguration(jsdocPaths: JsdocPaths) {

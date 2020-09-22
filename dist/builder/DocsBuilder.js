@@ -42,6 +42,7 @@ const os = __importStar(require("os"));
 const utils_1 = require("../utils");
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
+const fs_1 = require("fs");
 const rimraf = __importStar(require("rimraf"));
 const fs_extra_1 = require("fs-extra");
 const jsdoc_to_markdown_1 = __importDefault(require("jsdoc-to-markdown"));
@@ -57,7 +58,6 @@ class DocsBuilder {
         this.destination = destination;
         this.workingDir = DocsBuilder.createTemporaryWorkingDir();
     }
-
     static createTemporaryWorkingDir() {
         const osTempDir = os.tmpdir();
         const tmpDir = path.join(osTempDir, 'cplaceJS-docs-builder');
@@ -92,12 +92,8 @@ class DocsBuilder {
         });
     }
     buildForPlugin(plugin, jsdocPaths) {
-        // todo fix-this do not require manifest file.
-        let metaData = DocsBuilder.getMetaData(jsdocPaths.sourceDir, plugin);
-        if (metaData.pluginShortName) {
-            metaData.pluginShortName = metaData.pluginShortName.replace(/\s+/g, '-').toLowerCase();
-        } else {
-            console.error(`(CplaceJSDocs) Incorrect meta data cannot build docs for ${plugin}`);
+        // if plugin does not contain any js files return
+        if (!DocsBuilder.containsJsFiles(path.join(jsdocPaths.sourceDir, 'docs'))) {
             return;
         }
         const outputPath = path.join(jsdocPaths.out, plugin, 'api');
@@ -137,25 +133,32 @@ class DocsBuilder {
         });
         fs.writeFileSync(path.resolve(outputPath, 'helper-types.md'), output);
     }
-    static getMetaData(dir, plugin) {
-        const file = path.resolve(dir, 'manifest.json');
-        if (fs.existsSync(file)) {
-            return JSON.parse(fs.readFileSync(file, 'utf-8'));
-        } else {
-            const shortName = plugin.split('.').pop();
-            return {
-                pluginShortName: shortName || plugin,
-                displayName: shortName || plugin,
-                examplesTitle: 'Examples',
-                apiTitle: 'API'
-            };
-        }
-    }
+
     copyDocsFromPlugins() {
         this.plugins.forEach((pluginPath, pluginName) => {
             fs_extra_1.copySync(path.join(pluginPath, 'assets', 'cplaceJS'), path.join(this.workingDir, 'allDocs', pluginName));
         });
     }
+
+    static containsJsFiles(dir) {
+        if (!fs_1.existsSync(dir)) {
+            return false;
+        }
+        const files = fs.readdirSync(dir);
+        for (let i = 0; i < files.length; i++) {
+            const filename = path.join(dir, files[i]);
+            const stat = fs.lstatSync(filename);
+            if (stat.isDirectory()) {
+                if (this.containsJsFiles(filename)) {
+                    return true;
+                }
+            } else if (filename.indexOf('.js') >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     static generateConfiguration(jsdocPaths) {
         utils_1.debug('Generating jsdoc configuration...');
         const jsDocConf = Object.assign({}, baseJsdocConf_1.default);
