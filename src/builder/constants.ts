@@ -1,5 +1,5 @@
 export const typeDefSlug = 'helper-types';
-export const linkBase = 'cplacejs';
+export const linkBase = 'lowcode';
 
 
 export interface PluginMetaData {

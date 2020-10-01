@@ -133,13 +133,11 @@ class DocsBuilder {
         });
         fs.writeFileSync(path.resolve(outputPath, 'helper-types.md'), output);
     }
-
     copyDocsFromPlugins() {
         this.plugins.forEach((pluginPath, pluginName) => {
             fs_extra_1.copySync(path.join(pluginPath, 'assets', 'cplaceJS'), path.join(this.workingDir, 'allDocs', pluginName));
         });
     }
-
     static containsJsFiles(dir) {
         if (!fs_1.existsSync(dir)) {
             return false;
@@ -158,7 +156,6 @@ class DocsBuilder {
         }
         return false;
     }
-
     static generateConfiguration(jsdocPaths) {
         utils_1.debug('Generating jsdoc configuration...');
         const jsDocConf = Object.assign({}, baseJsdocConf_1.default);
