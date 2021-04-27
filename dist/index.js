@@ -72,9 +72,6 @@ function run() {
     const config = {
         repos: cli.flags.repos,
         destination: cli.flags.out || '',
-        uploadToServer: cli.flags.upload,
-        localOnly: cli.flags.localOnly,
-        html: cli.flags.html
     };
     console.log(JSON.stringify(config));
     try {

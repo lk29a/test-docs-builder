@@ -72,7 +72,7 @@ export default class DocsBuilder {
             return;
         }
 
-        const outputPath = path.join(jsdocPaths.out, plugin, 'api');
+        const outputPath = path.join(jsdocPaths.out, 'api', plugin);
 
         mkdirpSync(outputPath)
 

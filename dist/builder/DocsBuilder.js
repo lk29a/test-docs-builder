@@ -96,7 +96,7 @@ class DocsBuilder {
         if (!DocsBuilder.containsJsFiles(path.join(jsdocPaths.sourceDir, 'docs'))) {
             return;
         }
-        const outputPath = path.join(jsdocPaths.out, plugin, 'api');
+        const outputPath = path.join(jsdocPaths.out, 'api', plugin);
         fs_extra_1.mkdirpSync(outputPath);
         let docsData = jsdoc_to_markdown_1.default.getTemplateDataSync({
             'no-cache': true,
